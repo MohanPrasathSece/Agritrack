@@ -1,0 +1,59 @@
+/* Landing Page Fonts - Playfair Display & Inter */
+.landing-page {
+  font-family: 'Inter', sans-serif;
+}
+
+.landing-page .font-serif {
+  font-family: 'Playfair Display', serif;
+}
+
+.landing-page h1,
+.landing-page h2,
+.landing-page h3,
+.landing-page h4,
+.landing-page h5,
+.landing-page h6 {
+  font-family: 'Playfair Display', serif;
+}
+
+.landing-page .font-display {
+  font-family: 'Playfair Display', serif;
+}
+
+.landing-page .font-body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Override Tailwind font classes for landing page */
+.landing-page .font-sans {
+  font-family: 'Inter', sans-serif !important;
+}
+
+.landing-page .font-serif {
+  font-family: 'Playfair Display', serif !important;
+}
+
+/* Specific heading weights */
+.landing-page .font-light { font-weight: 300; }
+.landing-page .font-normal { font-weight: 400; }
+.landing-page .font-medium { font-weight: 500; }
+.landing-page .font-semibold { font-weight: 600; }
+.landing-page .font-bold { font-weight: 700; }
+.landing-page .font-extrabold { font-weight: 800; }
+.landing-page .font-black { font-weight: 900; }
+
+/* Playfair Display specific weights */
+.landing-page .font-playfair-light { font-family: 'Playfair Display', serif; font-weight: 400; }
+.landing-page .font-playfair-medium { font-family: 'Playfair Display', serif; font-weight: 500; }
+.landing-page .font-playfair-semibold { font-family: 'Playfair Display', serif; font-weight: 600; }
+.landing-page .font-playfair-bold { font-family: 'Playfair Display', serif; font-weight: 700; }
+.landing-page .font-playfair-extrabold { font-family: 'Playfair Display', serif; font-weight: 800; }
+.landing-page .font-playfair-black { font-family: 'Playfair Display', serif; font-weight: 900; }
+
+/* Inter specific weights */
+.landing-page .font-inter-light { font-family: 'Inter', sans-serif; font-weight: 300; }
+.landing-page .font-inter-normal { font-family: 'Inter', sans-serif; font-weight: 400; }
+.landing-page .font-inter-medium { font-family: 'Inter', sans-serif; font-weight: 500; }
+.landing-page .font-inter-semibold { font-family: 'Inter', sans-serif; font-weight: 600; }
+.landing-page .font-inter-bold { font-family: 'Inter', sans-serif; font-weight: 700; }
+.landing-page .font-inter-extrabold { font-family: 'Inter', sans-serif; font-weight: 800; }

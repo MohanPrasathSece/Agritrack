@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <script>
+    // Suppress AbortError from bubbling to Webpack Dev Server error overlay
+    const originalAddEventListener = window.addEventListener;
+    window.addEventListener = function(type, listener, options) {
+      if (type === 'unhandledrejection' || type === 'error') {
+        const wrappedListener = function(event) {
+          const isAbort = 
+            event?.reason?.name === 'AbortError' || 
+            event?.error?.name === 'AbortError' ||
+            (event?.reason?.message || '').includes('aborted') ||
+            (event?.error?.message || '').includes('aborted') ||
+            (event?.message || '').includes('aborted');
+          
+          if (isAbort) {
+            event.preventDefault();
+            return;
+          }
+          return listener.call(this, event);
+        };
+        return originalAddEventListener.call(window, type, wrappedListener, options);
+      }
+      return originalAddEventListener.call(window, type, listener, options);
+    };
+  </script>
+  <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#059669" />
+  <meta name="description"
+    content="Agritrack - Direct Farm to Market Platform. Quality-verified produce, fair pricing, and transparent supply chain for farmers." />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <title>Agritrack - Farm to Market Platform</title>
+  <!-- Google Translate -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,ta,te,kn,gu,mr,pa,bn,ml,or,as,fr,es,pt',
+        autoDisplay: false,
+        multilanguagePage: true
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <!-- Hidden Google Translate Anchor -->
+  <div id="google_translate_element" style="display:none; position:absolute; visibility:hidden;"></div>
+  <div id="root"></div>
+</body>
+
+</html>

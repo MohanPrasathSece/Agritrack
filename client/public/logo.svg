@@ -1,0 +1,44 @@
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient circle -->
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Main logo container -->
+  <g>
+    <!-- Leaf icon background -->
+    <circle cx="30" cy="30" r="25" fill="url(#logoGradient)" opacity="0.1"/>
+    
+    <!-- Main leaf shape -->
+    <path d="M30 10 C25 10, 20 15, 20 25 C20 30, 25 40, 30 50 C35 45, 40 35, 40 25 C40 20, 35 15, 30 10 Z" 
+          fill="url(#logoGradient)" 
+          stroke="#ffffff" 
+          stroke-width="2"/>
+    
+    <!-- Leaf vein -->
+    <path d="M30 25 L30 35" 
+          stroke="#ffffff" 
+          stroke-width="1.5" 
+          opacity="0.6"/>
+    
+    <!-- Small sprout -->
+    <circle cx="38" cy="20" r="3" fill="#fbbf24" opacity="0.9"/>
+    
+    <!-- Company name -->
+    <text x="65" y="25" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="url(#textGradient)">
+      AgriTrack
+    </text>
+    
+    <!-- Tagline -->
+    <text x="65" y="42" font-family="Arial, sans-serif" font-size="8" fill="#6b7280" letter-spacing="1">
+      SMART AGRICULTURAL SUPPLY CHAIN
+    </text>
+  </g>
+</svg>

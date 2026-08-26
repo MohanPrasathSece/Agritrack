@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/server.ts"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/server.ts"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "PORT": "5001"
+  },
+  "functions": {
+    "server.ts": {
+      "maxDuration": 10
+    }
+  }
+}
