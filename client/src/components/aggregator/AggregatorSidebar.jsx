@@ -1,43 +1,94 @@
 import React, { useState, useEffect } from "react";
-import { LayoutDashboard, ShoppingCart, Store, ClipboardList, User, LogOut, Menu, X, Sparkles, BarChart3, QrCode } from "lucide-react";
+import { LayoutDashboard, ShoppingCart, Store, ClipboardList, User, LogOut, Menu, X, Sparkles, BarChart3, Radio, Gavel } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import GoogleTranslate from "../GoogleTranslate";
 
 const navItems = [
     { title: "Dashboard", url: "/aggregator/dashboard", icon: LayoutDashboard },
-    { title: "Buy from Farmers", url: "/aggregator/collections", icon: ShoppingCart },
+    { title: "Live Farm Auctions", url: "/aggregator/collections", icon: Gavel },
     { title: "Sell to Retailers", url: "/aggregator/retailer-marketplace", icon: Store },
-    { title: "Orders", url: "/aggregator/retailer-orders", icon: ClipboardList },
-    { title: "Predictions", url: "/aggregator/predictions", icon: Sparkles },
-    { title: "Analytics", url: "/aggregator/analytics", icon: BarChart3 },
-    { title: "Scan Product", url: "/aggregator/scan-qr", icon: QrCode },
-    { title: "Profile", url: "/aggregator/profile", icon: User },
+    { title: "Orders & Transit", url: "/aggregator/retailer-orders", icon: ClipboardList },
+    { title: "AI Price Forecast", url: "/aggregator/predictions", icon: Sparkles },
+    { title: "Supply Analytics", url: "/aggregator/analytics", icon: BarChart3 },
+    { title: "Profile & Settings", url: "/aggregator/profile", icon: User },
 ];
 
-const SidebarContent = ({ navItems, location, mobileOpen, setMobileOpen, handleLogout, user }) => (
+const AvailabilityToggle = ({ currentStatus, onStatusChange }) => {
+    return (
+        <div className="bg-slate-50 p-3 rounded-2xl border border-slate-100 mb-4">
+            <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                    <Radio className="w-3 h-3 text-emerald-500 animate-pulse" /> Bidder Status
+                </span>
+                <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                    currentStatus === 'available' ? 'bg-emerald-100 text-emerald-700' :
+                    currentStatus === 'busy' ? 'bg-amber-100 text-amber-700' : 'bg-slate-200 text-slate-700'
+                }`}>
+                    {currentStatus === 'available' ? '🟢 Available' : currentStatus === 'busy' ? '🟡 Busy' : '⚫ Offline'}
+                </span>
+            </div>
+            <div className="grid grid-cols-3 gap-1">
+                <button
+                    type="button"
+                    onClick={() => onStatusChange('available')}
+                    className={`py-1 rounded-lg text-[9px] font-bold uppercase transition ${
+                        currentStatus === 'available' ? 'bg-emerald-600 text-white shadow-sm' : 'bg-white text-slate-500 hover:bg-slate-100'
+                    }`}
+                >
+                    Active
+                </button>
+                <button
+                    type="button"
+                    onClick={() => onStatusChange('busy')}
+                    className={`py-1 rounded-lg text-[9px] font-bold uppercase transition ${
+                        currentStatus === 'busy' ? 'bg-amber-500 text-white shadow-sm' : 'bg-white text-slate-500 hover:bg-slate-100'
+                    }`}
+                >
+                    Busy
+                </button>
+                <button
+                    type="button"
+                    onClick={() => onStatusChange('offline')}
+                    className={`py-1 rounded-lg text-[9px] font-bold uppercase transition ${
+                        currentStatus === 'offline' ? 'bg-slate-800 text-white shadow-sm' : 'bg-white text-slate-500 hover:bg-slate-100'
+                    }`}
+                >
+                    Off
+                </button>
+            </div>
+        </div>
+    );
+};
+
+const SidebarContent = ({ navItems, location, mobileOpen, setMobileOpen, handleLogout, user, buyerStatus, setBuyerStatus }) => (
     <div className="flex h-full flex-col bg-white text-slate-600 border-r border-slate-100">
         {/* Logo */}
-        <div className="flex flex-col items-center justify-center px-4 py-8 border-b border-slate-100">
+        <div className="flex flex-col items-center justify-center px-4 py-7 border-b border-slate-100">
             <img src="/logo.png" alt="Logo" className="w-28 object-contain drop-shadow-sm" />
+            <span className="text-[10px] font-black tracking-widest uppercase text-emerald-600 mt-2">Buyer & Bidder Node</span>
         </div>
 
         {/* Navigation Links */}
         <nav className="flex-1 overflow-y-auto px-4 py-4 space-y-1 custom-scrollbar">
+            
+            {/* Bidder Availability Status */}
+            <AvailabilityToggle currentStatus={buyerStatus} onStatusChange={setBuyerStatus} />
+
             {navItems.map((item) => (
                 <NavLink
                     key={item.url}
                     to={item.url}
                     onClick={() => setMobileOpen(false)}
                     className={({ isActive }) => `
-                        flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-300
+                        flex items-center gap-3 rounded-xl px-4 py-3 text-xs font-bold uppercase tracking-wider transition-all duration-300
                         ${isActive
                             ? "bg-emerald-500 text-white shadow-lg shadow-emerald-500/20"
                             : "text-slate-500 hover:bg-slate-50 hover:text-emerald-600"
                         }
                     `}
                 >
-                    <item.icon className={`h-5 w-5 ${location.pathname === item.url ? 'text-white' : 'text-slate-400 group-hover:text-emerald-500'}`} />
+                    <item.icon className={`h-4 w-4 ${location.pathname === item.url ? 'text-white' : 'text-slate-400 group-hover:text-emerald-500'}`} />
                     {item.title}
                 </NavLink>
             ))}
@@ -50,22 +101,22 @@ const SidebarContent = ({ navItems, location, mobileOpen, setMobileOpen, handleL
             </div>
             <div className="flex items-center gap-3 px-4 py-3 bg-slate-50 rounded-2xl mb-4">
                 <div className="w-9 h-9 rounded-full bg-emerald-500 flex items-center justify-center text-white font-black text-xs shadow-md shadow-emerald-500/20">
-                    {(user?.aggregator_details?.enterpriseName || user?.name || 'A')?.charAt(0)}
+                    {(user?.aggregator_details?.enterpriseName || user?.name || 'K')?.charAt(0)}
                 </div>
                 <div className="flex-1 min-w-0">
-                    <p className="text-xs font-medium text-slate-900 truncate uppercase tracking-tight">
-                        {user?.aggregator_details?.enterpriseName || user?.name || 'Mohan Agri Logistics'}
+                    <p className="text-xs font-bold text-slate-900 truncate uppercase tracking-tight">
+                        {user?.aggregator_details?.enterpriseName || user?.name || 'Kavitha Agro Traders'}
                     </p>
-                    <p className="text-[10px] text-slate-400 truncate tracking-tight">{user?.email}</p>
+                    <p className="text-[10px] text-slate-400 truncate tracking-tight">{user?.email || 'Coimbatore Mandi'}</p>
                 </div>
             </div>
 
             <button
                 onClick={handleLogout}
-                className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-slate-400 hover:bg-red-50 hover:text-red-600 transition-all duration-300 group"
+                className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-xs font-bold uppercase tracking-wider text-slate-400 hover:bg-red-50 hover:text-red-600 transition-all duration-300 group"
             >
                 <LogOut className="h-4 w-4 group-hover:rotate-12 transition-transform" />
-                Logout Account
+                Logout Node
             </button>
         </div>
     </div>
@@ -73,16 +124,31 @@ const SidebarContent = ({ navItems, location, mobileOpen, setMobileOpen, handleL
 
 export default function AggregatorSidebar() {
     const [mobileOpen, setMobileOpen] = useState(false);
+    const [buyerStatus, setBuyerStatus] = useState(() => localStorage.getItem('buyer_status') || 'available');
     const location = useLocation();
     const navigate = useNavigate();
     const { logout, user } = useAuth();
+
+    const handleStatusChange = (newStatus) => {
+        setBuyerStatus(newStatus);
+        localStorage.setItem('buyer_status', newStatus);
+    };
 
     const handleLogout = async () => {
         await logout();
         navigate("/login");
     };
 
-    const commonProps = { navItems, location, mobileOpen, setMobileOpen, handleLogout, user };
+    const commonProps = { 
+        navItems, 
+        location, 
+        mobileOpen, 
+        setMobileOpen, 
+        handleLogout, 
+        user, 
+        buyerStatus, 
+        setBuyerStatus: handleStatusChange 
+    };
 
     return (
         <>
@@ -92,7 +158,7 @@ export default function AggregatorSidebar() {
                     <div className="w-8 h-8 rounded-lg bg-white overflow-hidden border border-slate-100 flex items-center justify-center">
                         <img src="/logo.png" alt="Logo" className="w-full h-full object-cover scale-150" />
                     </div>
-                    <span className="font-semibold text-slate-900 uppercase tracking-tighter">Agritrack</span>
+                    <span className="font-bold text-slate-900 uppercase tracking-tight text-xs">AgriLink Buyer</span>
                 </div>
                 <div className="flex items-center gap-2">
                     <GoogleTranslate landingPage={false} />

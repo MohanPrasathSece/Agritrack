@@ -11,59 +11,52 @@ import scenicRice from "../../assets/hero-carousal/scenic-view-rice-field.jpg";
 const heroSlides = [
     {
         image: scenicRice,
-        badge: "Premium Quality",
-        title: "Farm to Table",
-        highlight: "Transparency",
-        description: "Track every step of your agricultural journey with blockchain-powered traceability and AI-driven quality assessment.",
+        badge: "AI Quality Assessment",
+        title: "Intelligent Farm to Market",
+        highlight: "Auction Platform",
+        description: "Upload crop photos for Gemini Vision AI quality grading and instant fair-price estimation to empower farmers in dynamic auctions.",
     },
     {
         image: pathwayField,
-        badge: "Smart Agriculture",
-        title: "Digital Supply Chain",
-        highlight: "Revolution",
-        description: "Connect farmers, aggregators, and retailers in a seamless ecosystem powered by smart contracts and quality verification.",
+        badge: "Real-Time Bidding",
+        title: "Smart Bidder Availability &",
+        highlight: "Live Auctions",
+        description: "Match farmer listings with active, verified buyers in real time based on crop demand, quantity feasibility, and location.",
     },
     {
         image: heroFarm3,
-        badge: "AI-Powered",
-        title: "Quality Assurance",
-        highlight: "Excellence",
-        description: "Advanced machine learning algorithms analyze crop quality in real-time, ensuring only the best reaches the market.",
+        badge: "Fallback Sale Protection",
+        title: "4-Level Guaranteed",
+        highlight: "Produce Sale",
+        description: "Multi-tier safety fallback: auction extension, neighboring district buyer matching, and instant direct retailer purchasing.",
     },
     {
         image: heroAgriculture,
-        badge: "Direct Trading",
-        title: "Fair Market",
-        highlight: "Access",
-        description: "Eliminate middlemen and connect directly with verified buyers for better prices and faster payments.",
-    },
-    {
-        image: heroFarm,
-        badge: "Blockchain Secured",
-        title: "Immutable Records",
-        highlight: "Trust",
-        description: "Every transaction and quality assessment is recorded on the blockchain, creating unbreakable trust in the supply chain.",
+        badge: "IoT Cold-Chain Telemetry",
+        title: "ESP32 + DHT22 Smart",
+        highlight: "Transit Monitoring",
+        description: "Track temperature and humidity in real-time from buyer to retailer to ensure fresh produce delivery without spoilage.",
     },
     {
         image: farmerImage,
-        badge: "Farmer Solution",
-        title: "Direct Marketplace for",
-        highlight: "Producers",
-        description: "List your harvests, track quality with AI, and connect with verified buyers in the regional network.",
+        badge: "Farmer First",
+        title: "Fair Pricing & Transparent",
+        highlight: "Auctions",
+        description: "AI-assisted price recommendations eliminate guesswork and help farmers maximize harvest revenue.",
     },
     {
         image: aggregatorImage,
-        badge: "Aggregator Hub",
-        title: "Streamline Your",
-        highlight: "Collections",
-        description: "Manage pickups efficiently, ensure quality control, and maintain complete traceability across your nodes.",
+        badge: "Buyer Feasibility Hub",
+        title: "Live Bidding & Multi-District",
+        highlight: "Procurement",
+        description: "Toggle active availability, join high-speed live auctions, and manage fresh produce consignments seamlessly.",
     },
     {
         image: retailerImage,
-        badge: "Retailer Nexus",
-        title: "Source Quality",
-        highlight: "Verified Assets",
-        description: "Access verified produce, track delivery in real-time, and offer your customers complete blockchain traceability.",
+        badge: "Retailer Quality Terminal",
+        title: "Fresh Verified Produce with",
+        highlight: "Condition Logs",
+        description: "Source directly from local farmers and verify cold-chain environmental compliance before accepting delivery.",
     }
 ];
 
@@ -93,9 +86,9 @@ const HeroSection = () => {
                             alt=""
                             className="w-full h-full object-cover object-center"
                         />
-                        {/* Dark gradient overlay — stronger at bottom and left */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-black/20" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+                        {/* Dark gradient overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-black/25" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
                     </div>
                 ))}
             </div>
@@ -107,12 +100,12 @@ const HeroSection = () => {
                         {currentSlide.badge}
                     </div>
                     <h1
-                        className="text-5xl md:text-7xl font-playfair-bold text-white leading-tight tracking-tight transition-all duration-700"
+                        className="text-4xl md:text-6xl font-playfair-bold text-white leading-tight tracking-tight transition-all duration-700"
                     >
                         {currentSlide.title}<br />
-                        <span className="text-green-400">{currentSlide.highlight}</span>
+                        <span className="text-emerald-400">{currentSlide.highlight}</span>
                     </h1>
-                    <p className="text-base text-white/70 max-w-lg leading-relaxed font-inter-medium">
+                    <p className="text-base text-white/80 max-w-lg leading-relaxed font-inter-medium">
                         {currentSlide.description}
                     </p>
                 </div>
@@ -124,7 +117,7 @@ const HeroSection = () => {
                     <button
                         key={i}
                         onClick={() => setCurrentSlideIndex(i)}
-                        className={`h-1.5 rounded-full transition-all duration-500 ${i === currentSlideIndex ? 'w-8 bg-green-400' : 'w-2 bg-white/30 hover:bg-white/50'}`}
+                        className={`h-1.5 rounded-full transition-all duration-500 ${i === currentSlideIndex ? 'w-8 bg-emerald-400' : 'w-2 bg-white/30 hover:bg-white/50'}`}
                     />
                 ))}
             </div>

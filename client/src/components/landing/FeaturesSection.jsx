@@ -1,4 +1,5 @@
-import { Cpu, QrCode, CreditCard, Star, ShieldCheck, Zap, BarChart3, Users, Truck } from "lucide-react";
+import React from "react";
+import { Cpu, Gavel, TrendingUp, Star, ShieldCheck, Zap, BarChart3, Users, Truck, Thermometer, Radio } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import scenicRice from "../../assets/hero-carousal/scenic-view-rice-field.jpg";
@@ -13,146 +14,104 @@ import heroFarm3 from "../../assets/hero-carousal/hero-farm3.jpg";
 const features = [
     { 
         icon: Cpu, 
-        title: "AI Quality Analysis", 
-        description: "Advanced machine learning analyzes crop quality in real-time with computer vision.",
+        title: "AI Quality Grading", 
+        description: "Gemini Vision assesses crop quality, ripeness percentage, and defects to assign accurate quality grades.",
         image: heroAgriculture,
-        stats: "98.5% Accuracy"
+        stats: "AI-Assisted"
+    },
+    { 
+        icon: TrendingUp, 
+        title: "AI Price Prediction", 
+        description: "Calculates predicted market price ranges and recommends fair auction starting bids for farmers.",
+        image: pathwayField,
+        stats: "Market Trends"
+    },
+    { 
+        icon: Radio, 
+        title: "Bidder Availability Hub", 
+        description: "Matches active (🟢 Available) buyers based on crop interest, required quantity, and delivery radius.",
+        image: aggregagotr,
+        stats: "Real-Time"
+    },
+    { 
+        icon: Gavel, 
+        title: "Live Produce Auctions", 
+        description: "Dynamic real-time bidding room where verified buyers submit incremental bids with countdown timers.",
+        image: heroFarmer,
+        stats: "Transparent"
     },
     { 
         icon: ShieldCheck, 
-        title: "Blockchain Traceability", 
-        description: "Immutable records track every step from farm to table with smart contracts.",
-        image: pathwayField,
-        stats: "100% Transparent"
-    },
-    { 
-        icon: QrCode, 
-        title: "Instant Verification", 
-        description: "Scan QR codes to verify origin, quality, and complete journey of any product.",
-        image: heroFarmer,
-        stats: "Real-time"
-    },
-    { 
-        icon: CreditCard, 
-        title: "Smart Payments", 
-        description: "Automated escrow ensures fair compensation with instant settlement on delivery.",
-        image: aggregagotr,
-        stats: "Zero Delay"
-    },
-    { 
-        icon: Star, 
-        title: "Reputation System", 
-        description: "Build trust through verified quality scores and consistent performance ratings.",
-        image: retailers,
-        stats: "5-Star Rated"
-    },
-    { 
-        icon: Users, 
-        title: "Direct Marketplace", 
-        description: "Connect farmers directly with buyers, eliminating middlemen for better prices.",
+        title: "4-Level Fallback System", 
+        description: "Safety guarantee with auction extension, neighboring district matching, and direct retailer purchase routes.",
         image: heroFarm3,
-        stats: "Fair Pricing"
+        stats: "100% Protected"
+    },
+    { 
+        icon: Thermometer, 
+        title: "ESP32 + DHT22 Cold Chain", 
+        description: "Live sensor monitoring of temperature and humidity during transit between buyer and retailer with breach alerts.",
+        image: retailers,
+        stats: "IoT Monitored"
     }
 ];
 
 const FeaturesSection = () => {
     return (
-        <section id="features" className="relative bg-gradient-to-br from-green-50 via-white to-green-50 py-20 md:py-32 overflow-hidden">
-            {/* Background decoration */}
-            <div className="absolute inset-0 opacity-30" style={{
-                backgroundImage: "url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%2322c55e\" fill-opacity=\"0.03\"%3E%3Ccircle cx=\"30\" cy=\"30\" r=\"2\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"
-            }}></div>
-            
+        <section id="features" className="relative bg-gradient-to-br from-emerald-50/50 via-white to-emerald-50/50 py-20 md:py-28 overflow-hidden">
             <div className="container mx-auto px-6 relative z-10">
                 <motion.div 
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center max-w-3xl mx-auto mb-20"
+                    className="text-center max-w-3xl mx-auto mb-16"
                 >
-                    <motion.div 
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        whileInView={{ scale: 1, opacity: 1 }}
-                        viewport={{ once: true }}
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-semibold mb-6"
-                    >
-                        <Zap className="w-4 h-4" />
-                        Platform Features
-                    </motion.div>
-                    <h2 className="text-4xl md:text-6xl font-playfair-bold text-slate-900 mb-6 leading-tight">
-                        Everything You Need for
-                        <span className="block text-green-600">Modern Agriculture</span>
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-100 text-emerald-800 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
+                        <Zap className="w-3.5 h-3.5" />
+                        Key Innovations
+                    </div>
+                    <h2 className="text-3xl md:text-5xl font-playfair-bold text-slate-900 mb-4 leading-tight">
+                        Intelligent Architecture for
+                        <span className="block text-emerald-600">Agricultural Supply Chains</span>
                     </h2>
-                    <p className="text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
-                        A comprehensive ecosystem that combines AI, blockchain, and smart contracts to revolutionize agricultural supply chains.
+                    <p className="text-sm md:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                        Combining AI image analysis, real-time bidder matchmaking, multi-tier fallback protection, and IoT transit telemetry.
                     </p>
                 </motion.div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {features.map((item, index) => (
                         <motion.div
                             key={item.title}
-                            initial={{ opacity: 0, y: 40 }}
+                            initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            className="group relative"
+                            transition={{ delay: index * 0.08 }}
+                            className="bg-white rounded-3xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl hover:border-emerald-500/30 transition-all flex flex-col justify-between"
                         >
-                            {/* Card with image background */}
-                            <div className="relative h-80 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500">
-                                {/* Image background */}
-                                <div className="absolute inset-0">
-                                    <img 
-                                        src={item.image} 
-                                        alt={item.title}
-                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                    />
-                                    {/* Gradient overlay */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                            <div className="h-44 overflow-hidden relative">
+                                <img 
+                                    src={item.image} 
+                                    alt={item.title} 
+                                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" 
+                                />
+                                <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-xl text-[10px] font-black uppercase tracking-wider text-emerald-700 shadow-sm">
+                                    {item.stats}
                                 </div>
-                                
-                                {/* Content */}
-                                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                                    {/* Icon and stats */}
-                                    <div className="flex items-center justify-between mb-4">
-                                        <div className="w-12 h-12 bg-green-500/20 backdrop-blur-sm rounded-xl flex items-center justify-center border border-green-400/30">
-                                            <item.icon className="w-6 h-6 text-green-400" />
-                                        </div>
-                                        <span className="text-xs font-semibold text-green-400 bg-green-500/20 px-3 py-1 rounded-full">
-                                            {item.stats}
-                                        </span>
-                                    </div>
-                                    
-                                    {/* Title and description */}
-                                    <h3 className="text-xl font-playfair-bold mb-2">{item.title}</h3>
-                                    <p className="text-base text-white/80 leading-relaxed line-clamp-2">
-                                        {item.description}
-                                    </p>
+                            </div>
+
+                            <div className="p-6 space-y-2">
+                                <div className="flex items-center gap-2 text-emerald-600 mb-1">
+                                    <item.icon className="w-5 h-5" />
+                                    <h3 className="text-base font-bold text-slate-900">{item.title}</h3>
                                 </div>
-                                
-                                {/* Hover effect overlay */}
-                                <div className="absolute inset-0 bg-green-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                <p className="text-xs text-slate-500 leading-relaxed">
+                                    {item.description}
+                                </p>
                             </div>
                         </motion.div>
                     ))}
                 </div>
-
-                {/* Bottom CTA */}
-                <motion.div 
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mt-16"
-                >
-                    <Link 
-                        to="/register"
-                        className="inline-flex items-center gap-3 px-8 py-4 bg-emerald-600 text-white rounded-2xl font-bold uppercase tracking-widest hover:bg-emerald-700 transition-all duration-300 shadow-xl shadow-emerald-600/20 hover:shadow-2xl hover:shadow-emerald-600/30 active:scale-95 group"
-                    >
-                        <BarChart3 className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-                        Explore All Features
-                        <Truck className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                </motion.div>
             </div>
         </section>
     );
